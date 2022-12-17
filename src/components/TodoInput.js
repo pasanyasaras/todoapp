@@ -1,19 +1,25 @@
 import { useState } from "react";
 import "./TodoInput.css";
 import {PlusIcon} from '@heroicons/react/outline';
+import {v4} from 'uuid'
 function TodoInput({todos,setTodos}){
-
+    
     const [todo, setTodo] = useState("");
-    const handleClick = () => {
-        const newTodo = {
-            id: 1,
-            name: todo,
-            isCompleted:false,
-        }
-        const newTodos = [...todos, newTodo];
-        setTodos(newTodos);
-        setTodo("");
 
+
+    const handleClick = () => {
+
+        if(todo.length>0){
+            const newTodo = {
+                id: v4(),
+                name: todo,
+                isCompleted:false,
+            }
+            const newTodos = [...todos, newTodo];
+            setTodos(newTodos);
+            setTodo("");
+        }
+        
     }
 
     return (
